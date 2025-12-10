@@ -167,33 +167,44 @@ include("connection.php")
           </div>
         </div>
 
-        <!--so here will go where to take attendency-->
         <div class="take-attendency">
           <div class="takes-attendent">
-            <select class="selec">
-              <option>class A</option>
-              <option>class B</option>
-            </select>
-            <input class="dates" type="text" placeholder="dates here" />
-          </div>
-          <div class="go-attendency">
-   <form method="POST" action="attendency.php">
-    <select class="choose_class" name="level">
-        <option value="">Select Level</option>
-        <option value="primary">Primary</option>
-        <option value="pre_primary">Pre-Primary</option>
-        <option value="secondary">secondary</option>
+
+           <form method="POST" action="attendency.php">
+    <select style="width:120px; height:30px; background:rgb(23,42,42); margin-right:20px; outline:none; border:none; border-radius:20px; text-align:center; color:white;" class="levs" name="level" required>
+        <option style="color:rgba(66, 39, 115, 1); border:none; outline:none; border-radius:20px; font-size:18px;" value="">Select Level</option>
+        <option style="color:rgba(66, 39, 115, 1); border:none; outline:none; border-radius:20px; font-size:18px;"  value="Primary">Primary</option>
+        <option style="color:rgba(66, 39, 115, 1); border:none; outline:none; border-radius:20px; font-size:18px;" value="Pre-Primary">Pre-Primary</option>
+        <option style="color:rgba(66, 39, 115, 1); border:none; outline:none; border-radius:20px; font-size:18px;" value="Secondary">Secondary</option>
     </select>
-    <button type="submit" class="attendy-takes">
-        <i style="color:white; background:green;" class="fa-solid fa-check"></i> Attend
-    </button>
+
+    <select style="width:120px; height:30px; background:rgb(23,42,42); outline:none; border:none; border-radius:20px; text-align:center; color:white;" class="levs" name="levels_type" required>
+        <optionvalue="" style="color:rgba(66, 39, 115, 1); border:none; outline:none; border-radius:20px; font-size:18px;">Select Level</option>
+        <option style="color:rgba(66, 39, 115, 1); border:none; outline:none; border-radius:20px; font-size:18px;" value="P1">P1</option>
+        <option style="color:rgba(66, 39, 115, 1); border:none; outline:none; border-radius:20px; font-size:18px;" value="P2">P2</option>
+        <option style="color:rgba(66, 39, 115, 1); border:none; outline:none; border-radius:20px; font-size:18px;" value="P3">P3</option>
+        <option style="color:rgba(66, 39, 115, 1); border:none; outline:none; border-radius:20px; font-size:18px;" value="P4">P4</option>
+        <option style="color:rgba(66, 39, 115, 1); border:none; outline:none; border-radius:20px; font-size:18px;" value="P5">P5</option>
+        <option style="color:rgba(66, 39, 115, 1); border:none; outline:none; border-radius:20px; font-size:18px;" value="P6">P6</option>
+        <option style="color:rgba(66, 39, 115, 1); border:none; outline:none; border-radius:20px; font-size:18px;" value="S1">S1</option>
+        <option style="color:rgba(66, 39, 115, 1); border:none; outline:none; border-radius:20px; font-size:18px;" value="S2">S2</option>
+        <option style="color:rgba(66, 39, 115, 1); border:none; outline:none; border-radius:20px; font-size:18px;" value="S3">S3</option>
+        <option style="color:rgba(66, 39, 115, 1); border:none; outline:none; border-radius:20px; font-size:18px;" value="S4">S4</option>
+    </select>
+
+    <select style="width:120px; margin-right:20px; height:30px; background:rgb(23,42,42); outline:none; border:none; border-radius:20px; text-align:center; color:white;" name="class_section" required>
+        <option style="color:rgba(66, 39, 115, 1); border:none; outline:none; border-radius:20px; font-size:18px;" value="">Select Section</option>
+        <option style="color:rgba(66, 39, 115, 1); border:none; outline:none; border-radius:20px; font-size:18px;" value="A">A</option>
+        <option style="color:rgba(66, 39, 115, 1); border:none; outline:none; border-radius:20px; font-size:18px;" value="B">B</option>
+        <option style="color:rgba(66, 39, 115, 1); border:none; outline:none; border-radius:20px; font-size:18px;" value="C">C</option>
+    </select>
+
+    <button style="width:120px; height:30px; margin-top:30px;  background:rgb(23,62,42); outline:none; border:none; border-radius:20px; text-align:center; color:white;" class="button-hover" type="submit">Attend</button>
 </form>
 
-           
 
           </div>
         </div>
-        <!--if you don't have the class-->
         <div class="create-class">
           <div>
             <input class="erne" type="text" placeholder="Enter c name">

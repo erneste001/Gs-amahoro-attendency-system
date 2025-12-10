@@ -38,6 +38,11 @@ body {
 
 
 }
+.button-hover:hover{
+color:#4caf50;
+background:#ff4d6d;
+}
+
 select{
   border:none !important;
   outline:none !important;

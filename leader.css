@@ -1,0 +1,144 @@
+body {
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;
+  background: #112;
+}
+.time {
+  display: flex;
+  gap: 100px;
+
+  list-style: none;
+}
+.times {
+  position: relative;
+  padding-top: 30px;
+
+  margin-top: 45px;
+  margin-left: 250px;
+  width: 1000px;
+  height: 560px;
+  padding-left: 20px;
+}
+.times::before {
+  content: "";
+  width: 100%;
+  background-image: url("https://cdn.getyourguide.com/image/format=auto,fit=crop,gravity=auto,quality=60,width=270,height=180,dpr=2/tour_img/d68d9017335586a6c3aa8b983c073c8bae503c9299ec47d32ba424b8e94258ee.jpg");
+  opacity: 10%;
+  padding-top: 20px;
+  background-size: cover;
+  border: 6px solid rgb(39, 146, 78);
+  pointer-events: none;
+  border-radius: 10px;
+  background-repeat: none;
+  padding-left: 20px;
+  height: 100%;
+  position: absolute;
+}
+.check-time {
+  width: 300px;
+  height: 40px;
+  justify-content: center;
+  display: flex;
+  list-style: none;
+  gap: 20px;
+}
+#icons {
+  margin-right: 10px;
+  color: rgb(114, 180, 21);
+  padding-left: 20px;
+}
+.time-level {
+  padding-top: 10px;
+  color: white;
+  font-size: 20px;
+  padding-left: 30px;
+}
+.other {
+  margin-top: 20px;
+}
+.other-choices {
+  width: 180px;
+  border: none;
+  border-radius: 10px;
+  background: rgb(7, 3, 56);
+  color: white;
+  height: 30px;
+  margin-right: 10px;
+  text-align: center;
+}
+.back {
+  width: 130px;
+  height: 40px;
+  color: white;
+  border-radius: 10px;
+  background: rgb(121, 221, 121);
+}
+.leaderBoard {
+  margin-left: 70px;
+
+  margin-top: 30px;
+  border-radius: 20px;
+  width: 90%;
+
+  height: 400px;
+}
+.primary,
+.pre-primary,
+.secondary {
+  border-radius: 10px;
+  width: 100%;
+  height: 130px;
+}
+.primary {
+  background: black;
+  display: flex;
+  gap: 60px;
+  margin-top: 20px;
+}
+.secondary {
+  margin-top: 10px;
+  gap: 60px;
+
+  display: flex;
+  background: rgb(3, 12, 23);
+}
+.pre-primary {
+  margin-top: 10px;
+  gap: 60px;
+
+  display: flex;
+  background: rgb(14, 19, 20);
+}
+.li {
+  list-style: none;
+}
+#circleText {
+  text-align: center;
+}
+.primary-info {
+  padding-top: 20px;
+  list-style: none;
+  padding-left: 30px;
+}
+.primary-info > li {
+  color: white;
+  font-size: 20px;
+}
+.primary-info > button {
+  width: 150px;
+  margin-top: 30px;
+  height: 30px;
+  margin-left: 50px;
+  border-radius: 10px;
+  border: none;
+}
+.relativer {
+  stroke-dasharray: 314;
+}
+.absoluter {
+  stroke-linecap: round;
+
+  stroke-dasharray: 314;
+  stroke-dashoffset: 170;
+}
