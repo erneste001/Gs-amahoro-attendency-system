@@ -147,7 +147,7 @@ button.absent {
     <h2>Gs Amahoro Attendency List</h2>
 
     <form method="POST" action="attendency.php">
-        <select name="level" required>
+        <select id="getLevels" name="level" required>
             <option value="">Select Level</option>
             <option value="Primary" <?= ($level=='Primary')?'selected':'' ?>>Primary</option>
             <option value="Pre-Primary" <?= ($level=='Pre-Primary')?'selected':'' ?>>Pre-Primary</option>
@@ -211,17 +211,30 @@ function markAttendance(studentId, status) {
 }
 
 function submitAttendance() {
+    const levelSelected = document.getElementById("getLevels").value;
+    localStorage.setItem('educational', levelSelected);
+
     let presentCount = 0;
-    let absentCount = 0;
+    let absentCount  = 0;
 
     for (let id in attendance) {
         if (attendance[id] === 'Present') presentCount++;
         else if (attendance[id] === 'Absent') absentCount++;
     }
 
-    alert(`Total Present: ${presentCount}\nTotal Absent: ${absentCount}`);
-    console.log(attendance);
+    let totalPresent = Number(localStorage.getItem(`presents-${levelSelected}`)) || 0;
+    let totalAbsent  = Number(localStorage.getItem(`absents-${levelSelected}`)) || 0;
+
+    totalPresent += presentCount;
+    totalAbsent  += absentCount;
+
+    localStorage.setItem(`presents-${levelSelected}`, totalPresent);
+    localStorage.setItem(`absents-${levelSelected}`, totalAbsent);
+
+    attendance = {};
 }
+
+
 </script>
 
 </body>

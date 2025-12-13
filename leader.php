@@ -40,7 +40,7 @@
             align-items: flex-start;
             padding-top: 40px;
             padding-bottom: 40px;
-            font-size: 15px;
+            font-size:16px;
         }
 
         .app-container {
@@ -329,7 +329,7 @@
                 
                 <section class="stats-grid">
                     <div class="stat-widget">
-                        <div class="value" style="color: var(--color-accent-yellow);">0%</div>
+                        <div id="overAll" class="value" style="color: var(--color-accent-yellow);">0%</div>
                         <div class="label">Overall Attendance</div>
                     </div>
                     <div class="stat-widget">
@@ -337,7 +337,7 @@
                         <div class="label">Total Enrollment</div>
                     </div>
                     <div class="stat-widget">
-                        <div class="value" style="color: var(--color-accent-red);">0%</div>
+                        <div id="oveAll" class="value" style="color: var(--color-accent-red);">0%</div>
                         <div class="label">Total Absence Rate</div>
                     </div>
                 </section>
@@ -354,7 +354,7 @@
                                     <circle class="circle-track" cx="50" cy="50" r="40"></circle>
                                     <circle class="circle-progress" cx="50" cy="50" r="40" data-progress="93.2" style="stroke-dashoffset: 17.08;"></circle>
                                 </svg>
-                                <span class="circle-text-center" style="color: var(--color-accent-blue);">0</span>
+                                <span id="primaryPercentage" class="circle-text-center" style="color: var(--color-accent-blue); font-size:17px;">0</span>
                             </div>
 
                             <div class="detail-stats">
@@ -364,11 +364,11 @@
                                 </div>
                                 <div class="detail-item">
                                     <span class="detail-label">Tardiness Rate</span>
-                                    <span class="detail-value" style="color: var(--color-accent-yellow);">5.1%</span>
+                                    <span  id="presenting" class="detail-value" style="color: var(--color-accent-yellow);">0%</span>
                                 </div>
                                 <div class="detail-item">
                                     <span class="detail-label">Unexcused Absences</span>
-                                    <span class="detail-value" style="color: var(--color-accent-red);">18</span>
+                                    <span id="absenting" class="detail-value" style="color: var(--color-accent-red);">18</span>
                                 </div>
                             </div>
                         </div>
@@ -386,7 +386,7 @@
                                     <circle class="circle-track" cx="50" cy="50" r="40"></circle>
                                     <circle class="circle-progress" cx="50" cy="50" r="40" data-progress="88.5" style="stroke-dashoffset: 28.89;"></circle>
                                 </svg>
-                                <span class="circle-text-center" style="color: var(--color-accent-red);">0%</span>
+                                <span id="prePercentage" class="circle-text-center" style="color: var(--color-accent-red); font-size:17px;">0%</span>
                             </div>
 
                             <div class="detail-stats">
@@ -396,11 +396,11 @@
                                 </div>
                                 <div class="detail-item">
                                     <span class="detail-label">Tardiness Rate</span>
-                                    <span class="detail-value" style="color: var(--color-accent-yellow);">0%</span>
+                                    <span id="presentings" class="detail-value" style="color: var(--color-accent-yellow);">0%</span>
                                 </div>
                                 <div class="detail-item">
                                     <span class="detail-label">Unexcused Absences</span>
-                                    <span class="detail-value" style="color: var(--color-accent-red);">0</span>
+                                    <span id="absentings" class="detail-value" style="color: var(--color-accent-red);">0</span>
                                 </div>
                             </div>
                         </div>
@@ -418,7 +418,7 @@
                                     <circle class="circle-track" cx="50" cy="50" r="40"></circle>
                                     <circle class="circle-progress" cx="50" cy="50" r="40" data-progress="98.1" style="stroke-dashoffset: 4.77;"></circle>
                                 </svg>
-                                <span class="circle-text-center" style="color: var(--color-accent-blue);">0%</span>
+                                <span id="secondaryPercentages" class="circle-text-center" style="color: var(--color-accent-blue); font-size:17px;">0%</span>
                             </div>
 
                             <div class="detail-stats">
@@ -428,11 +428,11 @@
                                 </div>
                                 <div class="detail-item">
                                     <span class="detail-label">Tardiness Rate</span>
-                                    <span class="detail-value" style="color: var(--color-accent-yellow);">1.5%</span>
+                                    <span id="presentss" class="detail-value" style="color: var(--color-accent-yellow);">1.5%</span>
                                 </div>
                                 <div class="detail-item">
                                     <span class="detail-label">Unexcused Absences</span>
-                                    <span class="detail-value" style="color: var(--color-accent-red);">0</span>
+                                    <span id="absentss" class="detail-value" style="color: var(--color-accent-red);">0</span>
                                 </div>
                             </div>
                         </div>
@@ -451,29 +451,46 @@
     </div>
     
     <script>
-        document.addEventListener('DOMContentLoaded', () => {
-            const circles = document.querySelectorAll('.circle-progress');
-            const radius = 40;
-            const circumference = 2 * Math.PI * radius;
+const levels = ["Primary", "Pre-primary", "Secondary"];
+let totalPresent = 0;
+let totalAbsent = 0;
+let percentages1 = 0, percentages2 = 0, percentages3 = 0;
 
-            circles.forEach(circle => {
-                const progress = parseFloat(circle.getAttribute('data-progress'));
-                const offset = circumference - (progress / 100) * circumference;
-                
-                setTimeout(() => {
-                    circle.style.strokeDashoffset = offset;
-                }, 100); 
-            });
-        });
-        
-history.pushState(null, null, location.href);
-window.onpopstate = function () {
-    history.go(1); 
-};
-history.pushState(null, null, location.href);
-window.onpopstate = function () {
-    history.go(1); 
-};
+levels.forEach(level => {
+    const presentRate = Number(localStorage.getItem(`presents-${level}`)) || 0;
+    const absentRate  = Number(localStorage.getItem(`absents-${level}`)) || 0;
+
+    totalPresent += presentRate;
+    totalAbsent += absentRate;
+
+    if (level === "Primary") {
+        document.getElementById("presenting").textContent = presentRate;
+        document.getElementById("absenting").textContent = absentRate;
+        percentages1 = (presentRate * 100) / 600;
+        document.getElementById("primaryPercentage").textContent = percentages1.toFixed(1) + "%";
+
+    } else if (level === "Pre-primary") {
+        document.getElementById("presentings").textContent = presentRate;
+        document.getElementById("absentings").textContent = absentRate;
+        percentages2 = (presentRate * 100) / 250;
+        document.getElementById("prePercentage").textContent = percentages2.toFixed(1) + "%";
+
+    } else if (level === "Secondary") {
+        document.getElementById("presentss").textContent = presentRate;
+        document.getElementById("absentss").textContent = absentRate;
+        percentages3 = (presentRate * 100) / 400;
+        document.getElementById("secondaryPercentages").textContent = percentages3.toFixed(1) + "%";
+    }
+});
+
+const totalStudents = 600 + 250 + 400;
+const overallPercentage = (totalPresent * 100) / totalStudents;
+document.getElementById("overAll").textContent = overallPercentage.toFixed(1) + "%";
+
+const overallAbsentPercentage = (totalAbsent * 100) / totalStudents;
+document.getElementById("oveAll").textContent = overallAbsentPercentage.toFixed(1) + "%";
+
+
     </script>
 </body>
 </html>
