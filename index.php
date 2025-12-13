@@ -1,5 +1,5 @@
 <?php
-include("connection.php")
+session_start();
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -284,12 +284,21 @@ include("connection.php")
         <li class="nav-link"><img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTaQvqVUmMo2Q9pWacCNkCdRCfU1GAOBjbCMg&s" alt="Icon"/>Online</li>
         <li class="nav-link"><img src="https://www.iconpacks.net/icons/1/free-settings-icon-960-thumb.png" alt="Icon"/>Settings</li>
         <li class="nav-link"><img src="https://www.shutterstock.com/image-vector/vector-flat-illustration-grayscale-avatar-600nw-2264922221.jpg" alt="Icon"/>Profile</li>
+        <!-- adding logout button -->
+        <li onclick="location.href='logout.php'" class="nav-link"><img src="https://cdn-icons-png.flaticon.com/512/1828/1828427.png" alt="Icon"/>Logout</li>
       </ul>
     </div>
 
     <div class="content-area">
       <div class="header-bar">
         <input type="search" class="search-area" placeholder="Search students, levels, or posts...">
+        <p ><span style="font-size:23px; color:blue;">Welcome Back! </span><span id="usernames"><?php 
+          if (isset($_SESSION['email'])) {
+              echo htmlspecialchars($_SESSION['email']);
+          } else {
+              echo "Guest";
+          }
+        ?></span></p>
         <button id="mode-toggle" onclick="toggleMode()">Switch to Light Mode</button>
       </div>
 

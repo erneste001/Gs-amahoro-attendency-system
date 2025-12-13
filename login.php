@@ -1,4 +1,5 @@
 <?php
+session_start();
 include "connection.php";
 
 $message = "";
@@ -16,7 +17,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $user = $stmt->fetch(PDO::FETCH_ASSOC);
 
             if ($user && password_verify($password, $user['password'])) {
+              
+              $_SESSION["email"] = $email; // I want to display the email of the logged-in user in index.php
               header("Location:index.php");
+              exit;   
             } else {
                 $message = "❌ Invalid email or password.";
             }

@@ -166,7 +166,7 @@ button.absent {
         <button type="submit">Attend</button>
     </form>
 
-    <table>
+    <table id="tables">
         <thead>
             <tr>
                 <th>Student ID</th>
@@ -197,9 +197,12 @@ button.absent {
     </table>
 
     <button id="submitAttendance" onclick="submitAttendance()">Submit Attendance</button>
+    <div style="display:flex; justify-content:center; align-items:center; gap:40px;">
+    <p style="font-size:20px;" id="message"></p>
+
     <button class="back" onclick="window.location.href='index.php'">Back home</button>
 </div>
-
+</div>
 <script>
 let attendance = {};
 
@@ -211,6 +214,8 @@ function markAttendance(studentId, status) {
 }
 
 function submitAttendance() {
+    document.getElementById("tables").style.display="none";
+    document.getElementById("message").textContent="Attendance was submitted successfully!";
     const levelSelected = document.getElementById("getLevels").value;
     localStorage.setItem('educational', levelSelected);
 

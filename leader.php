@@ -352,7 +352,7 @@
                             <div class="progress-circle-wrapper">
                                 <svg width="100" height="100" viewBox="0 0 100 100" class="circle-svg">
                                     <circle class="circle-track" cx="50" cy="50" r="40"></circle>
-                                    <circle class="circle-progress" cx="50" cy="50" r="40" data-progress="93.2" style="stroke-dashoffset: 17.08;"></circle>
+                                    <circle class="circle-progress" cx="50" cy="50" r="40" data-progress="93.2" style="stroke-dashoffset: 466.08;"></circle>
                                 </svg>
                                 <span id="primaryPercentage" class="circle-text-center" style="color: var(--color-accent-blue); font-size:17px;">0</span>
                             </div>
@@ -463,13 +463,35 @@ levels.forEach(level => {
     totalPresent += presentRate;
     totalAbsent += absentRate;
 
-    if (level === "Primary") {
-        document.getElementById("presenting").textContent = presentRate;
-        document.getElementById("absenting").textContent = absentRate;
-        percentages1 = (presentRate * 100) / 600;
-        document.getElementById("primaryPercentage").textContent = percentages1.toFixed(1) + "%";
+if (level === "Primary") {
+    document.getElementById("presenting").textContent = presentRate;
+    document.getElementById("absenting").textContent = absentRate;
 
-    } else if (level === "Pre-primary") {
+    let percentages1 = (presentRate * 100) / 600;
+    document.getElementById("primaryPercentage").textContent = "0%";
+
+    let radius = 40;
+    let circumference = 2 * Math.PI * radius;
+    let circle = document.querySelector('.circle-progress');
+
+    circle.style.strokeDasharray = circumference;
+    circle.style.strokeDashoffset = circumference;
+
+    let progress = 0;
+    function animate() {
+        if (progress < percentages1) {
+            progress += 0.5; 
+            circle.style.strokeDashoffset = circumference * (1 - progress / 100);
+            document.getElementById("primaryPercentage").textContent = progress.toFixed(1) + "%";
+            requestAnimationFrame(animate);
+        } else {
+            circle.style.strokeDashoffset = circumference * (1 - percentages1 / 100);
+            document.getElementById("primaryPercentage").textContent = percentages1.toFixed(1) + "%";
+        }
+    }
+    animate();
+}
+ else if (level === "Pre-primary") {
         document.getElementById("presentings").textContent = presentRate;
         document.getElementById("absentings").textContent = absentRate;
         percentages2 = (presentRate * 100) / 250;
