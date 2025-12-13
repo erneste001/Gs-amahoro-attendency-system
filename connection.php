@@ -1,8 +1,12 @@
 <?php
-$servername = "localhost";
-$username = "root";
-$password = "";
-$dbname = "amahoro";
+$host = "localhost";
+$db   = "amahoro";
+$user = "root";
+$pass = "";
 
-$conn = new mysqli($servername, $username, $password, $dbname);
-
+try {
+    $pdo = new PDO("mysql:host=$host;dbname=$db;charset=utf8", $user, $pass);
+    $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+} catch (PDOException $e) {
+    die("Connection failed: " . $e->getMessage());
+}

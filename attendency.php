@@ -13,7 +13,7 @@ if ($level != '') $query .= " AND level_type = '$level'";
 if ($levels_type != '') $query .= " AND class_level = '$levels_type'";
 if ($class_section != '') $query .= " AND class_name = '$class_section'";
 
-$result = mysqli_query($conn, $query);
+$result = $pdo->query($query);
 ?>
 
 <!DOCTYPE html>
@@ -21,10 +21,13 @@ $result = mysqli_query($conn, $query);
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
 <title>Attendance</title>
 <style>
 body {
-    font-family: Arial, sans-serif;
+    font-family: 'Calibri', sans-serif;
+
     background-color: #f5f5f5;
     margin: 0;
     padding: 20px;
@@ -176,7 +179,7 @@ button.absent {
             </tr>
         </thead>
         <tbody>
-            <?php while($row = mysqli_fetch_assoc($result)): ?>
+<?php while($row = $result->fetch(PDO::FETCH_ASSOC)): ?>
             <tr>
                 <td><?= $row['student_id'] ?></td>
                 <td><?= $row['student_name'] ?></td>
