@@ -28,11 +28,22 @@ $result = $pdo->query($query);
 body {
     font-family: 'Calibri', sans-serif;
 
-    background-color: #f5f5f5;
+    background-color:black;
+    position:relative;
     margin: 0;
     padding: 20px;
 }
-
+body::before{
+        content:"";
+    position: absolute;
+    top:0;
+    left:0;
+    width:100%;
+    pointer-events: none;;
+    height:100%;
+    background:blue;
+    opacity:50%;
+}
 h2 {
     text-align: center;
     color: black;
@@ -40,12 +51,26 @@ h2 {
 }
 
 .attendance-container {
+    opacity:70%;
     max-width: 1000px;
     margin: auto;
-    background: #fff;
+    width:100%;
+    background: black;
     padding: 20px;
     border-radius: 12px;
     box-shadow: 0 6px 20px rgba(0,0,0,0.1);
+    position:relative;
+}
+.attendance-container::before{
+    content:"";
+    position: absolute;
+    top:0;
+    left:0;
+    width:100%;
+    pointer-events: none;;
+    height:100%;
+    background:blue;
+    opacity:30%;
 }
 
 form {
@@ -70,8 +95,17 @@ form button {
     color: white;
     cursor: pointer;
 }
-
+.table-container{
+    
+    overflow-y:auto;
+    max-height:400px;
+    border-radius:10px;
+    scrollbar-width: none;
+    background: rgba(0,0,0,0.1);
+}
 table {
+    
+    color:white;
     width: 100%;
     border-collapse: collapse;
     margin-bottom: 20px;
@@ -88,7 +122,7 @@ th, td {
 }
 
 tr:hover {
-    background: #f0f0f0;
+    background: #112;
 }
 
 button.present,.back {
@@ -139,9 +173,36 @@ button.absent {
         padding: 10px;
     }
 }
+.vid {
+    position: fixed;    
+    top: 0;
+    left: 0;
+    width: 100vw;         
+    height: 100vh;         
+    pointer-events: none; 
+    object-fit: cover;
+    z-index: -1000;
+}
+
+
 </style>
 </head>
-<body>
+<body >
+
+<iframe
+  id="myVideo"
+  class="vid"
+  width="100%"
+  height="100%"
+  frameborder="0"
+  allow="autoplay; fullscreen"
+  allowfullscreen
+  src="https://www.youtube.com/embed/u8t1uWw34CI?controls=0&modestbranding=1&rel=0&showinfo=0"
+></iframe>
+
+<button style="width:120px; height:30px; position:absolute; background:red; color:white; margin-top:400px; border:none; border-radius:10px; outline:none;" id="playBtn">Play Video</button>
+
+
 
 <div class="attendance-container">
     <h2>Gs Amahoro Attendency List</h2>
@@ -165,7 +226,7 @@ button.absent {
 
         <button type="submit">Attend</button>
     </form>
-
+    <div class="table-container">
     <table id="tables">
         <thead>
             <tr>
@@ -195,15 +256,21 @@ button.absent {
             <?php endwhile; ?>
         </tbody>
     </table>
-
+</div>
     <button id="submitAttendance" onclick="submitAttendance()">Submit Attendance</button>
     <div style="display:flex; justify-content:center; align-items:center; gap:40px;">
-    <p style="font-size:20px;" id="message"></p>
+    <p style="font-size:20px; color:white;" id="message"></p>
 
     <button class="back" onclick="window.location.href='index.php'">Back home</button>
 </div>
 </div>
 <script>
+      const playBtn = document.getElementById('playBtn');
+  const iframe = document.getElementById('myVideo');
+
+  playBtn.addEventListener('click', () => {
+    iframe.src = "https://www.youtube.com/embed/u8t1uWw34CI?autoplay=1&controls=0&modestbranding=1&rel=0&showinfo=0";
+  });
 let attendance = {};
 
 function markAttendance(studentId, status) {
@@ -216,6 +283,7 @@ function markAttendance(studentId, status) {
 function submitAttendance() {
     document.getElementById("tables").style.display="none";
     document.getElementById("message").textContent="Attendance was submitted successfully!";
+
     const levelSelected = document.getElementById("getLevels").value;
     localStorage.setItem('educational', levelSelected);
 
