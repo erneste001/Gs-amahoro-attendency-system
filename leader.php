@@ -31,7 +31,6 @@
 
         body {
             font-family: var(--main-font);
-            background: #112;
             color: white !important;
             min-height: 100vh;
             display: flex;
@@ -39,21 +38,10 @@
             align-items: flex-start;
             padding-top: 40px;
             padding-bottom: 40px;
-            position: relative;
             font-size: 16px;
         }
 
-        body::before {
-            content: "";
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            pointer-events: none;
-            height: 100%;
-            background: blue;
-            opacity: 1%;
-        }
+
 
         .app-container {
             width: var(--main-width);
@@ -63,25 +51,14 @@
             box-shadow: var(--shadow-soft);
             display: flex;
             min-height: calc(100vh - 80px);
-            position: relative;
             color: var(--color-dark-text);
         }
 
-        .app-container::before {
-            pointer-events: none;
-            content: "";
-            width: 100%;
-            height: 100%;
-            position: absolute;
-            background: blue;
-            top: 0;
-            left: 0;
-            opacity: 3%;
-        }
+   
 
         .sidebar {
             width: 200px;
-            background: var(--color-sidebar-bg);
+            background: white;
             padding: 20px 15px;
             flex-shrink: 0;
             border-right: 1px solid rgba(0, 0, 0, 0.05);
@@ -123,11 +100,23 @@
         .dashboard-content {
             flex-grow: 1;
             padding: 30px;
+            position: relative;
             display: flex;
             flex-direction: column;
             background: var(--color-light-bg); 
             border-top-right-radius: var(--border-radius);
             border-bottom-right-radius: var(--border-radius);
+        }
+             .dashboard-content::before {
+            pointer-events: none;
+            content: "";
+            width: 100%;
+            height: 100%;
+            position: absolute;
+            background: blue;
+            top: 0;
+            left: 0;
+            opacity: 20%;
         }
 
         .dashboard-header {
@@ -169,9 +158,9 @@
         }
 
         .btn-primary {
-            background: var(--color-dark-text);
+            border:none;
             border-color: var(--color-dark-text);
-            color: var(--color-light-bg);
+            color: rgba(11, 30, 151, 1);
             margin-left: 15px;
         }
         
@@ -325,7 +314,7 @@
         }
 
         .card-footer {
-            margin-top: auto; /* Push footer to the bottom */
+            margin-top: auto; 
             padding-top: 15px;
             border-top: 1px dashed rgba(0, 0, 0, 0.05);
             display: flex;
@@ -354,10 +343,11 @@
         <div class="sidebar">
             <div class="sidebar-logo" style="color: var(--color-accent-yellow);">ATTENDANCE SYSTEM</div>
             <ul class="sidebar-menu">
-                <li><a href="#" class="active"><i class="fas fa-chart-bar"></i> Dashboard</a></li>
-                <li><a href="#"><i class="fas fa-calendar-check"></i> Daily Log</a></li>
-                <li><a href="#"><i class="fas fa-users"></i> Students</a></li>
-                <li><a href="#"><i class="fas fa-cog"></i> Settings</a></li>
+              <li><a href="#" class="active"><i class="fas fa-arrow-right"></i> Dashboard</a></li>
+<li><a href="#"><i class="fas fa-arrow-right"></i> Daily Log</a></li>
+<li><a href="#"><i class="fas fa-arrow-right"></i> Students</a></li>
+<li><a href="#"><i class="fas fa-arrow-right"></i> Settings</a></li>
+
             </ul>
         </div>
 
@@ -368,11 +358,11 @@
                 
                 <div style="display: flex; align-items: center;">
                     <nav class="time-navigation">
-                        <button class="nav-btn active">Today</button>
-                        <button class="nav-btn">Last Week</button>
-                        <button class="nav-btn">Month</button>
+                        <button class="nav-btn active" style="border:none; background:#3498db; width:120px; color:white; height:40px;">Today</button>
+                        <button class="nav-btn" style="border:none";>Last Week</button>
+                        <button class="nav-btn" style="border:none">Month</button>
                     </nav>
-                    <button type="button" class="btn-primary" onclick="location.href='index.php'">Log Attendance</button> 
+                    <button type="button" class="btn-primary" onclick="location.href='index.php'">Back home <i class="fa-solid fa-arrow-right"></i></button> 
                 </div>
             </header>
 
@@ -425,7 +415,7 @@
                         </div>
                         <footer class="card-footer">
                             <p>Action: Monitor morning check-in process.</p>
-                            <button class="btn-small" style="background: var(--color-dark-text); color: white; border:none; padding: 6px 12px; border-radius: 4px;">View Details</button>
+                            <!--<button class="btn-small" style="background: var(--color-dark-text); color: white; border:none; padding: 6px 12px; border-radius: 4px;">View Details</button>-->
                         </footer>
                     </section>
 
@@ -457,7 +447,7 @@
                         </div>
                         <footer class="card-footer">
                             <p>Action: High risk. Contact parents immediately.</p>
-                            <button class="btn-small" style="background: var(--color-dark-text); color: white; border:none; padding: 6px 12px; border-radius: 4px;">View Details</button>
+                            <!--<button class="btn-small" style="background: var(--color-dark-text); color: white; border:none; padding: 6px 12px; border-radius: 4px;">View Details</button>-->
                         </footer>
                     </section>
 
@@ -489,7 +479,7 @@
                         </div>
                         <footer class="card-footer">
                             <p>Action: Excellent attendance. Maintain support.</p>
-                            <button class="btn-small" style="background: var(--color-dark-text); color: white; border:none; padding: 6px 12px; border-radius: 4px;">View Details</button>
+                           <!-- <button class="btn-small" style="background: var(--color-dark-text); color: white; border:none; padding: 6px 12px; border-radius: 4px;">View Details</button>-->
                         </footer>
                     </section>
                 </div>

@@ -1,5 +1,7 @@
 <?php
+
 session_start();
+include "connection.php";
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -41,7 +43,7 @@ body::before{
     pointer-events: none;;
     height:100%;
     background:blue;
-    opacity:40%;
+    opacity:20%;
 
 }
 .action-section-wrapper::-webkit-scrollbar,
@@ -72,7 +74,7 @@ body::before{
     pointer-events: none;;
     height:100%;
     background:blue;
-    opacity:30%;
+    opacity:10%;
 }
 .logo-area {
   display: flex;
@@ -154,11 +156,41 @@ body::before{
 }
 #mode-toggle {
   background-color: var(--color-secondary-bg);
-  color: var(--color-text);
+  color: white;
   border: 1px solid var(--color-border);
   padding: 8px 15px;
-  border-radius: 20px;
+  border-radius: 10px;
   cursor: pointer;
+  animation-name:animate;
+  animation-timing-function: linear;
+  animation-duration: 2s;
+  animation-delay:0s;
+  animation-iteration-count: infinite;
+}
+@keyframes animate{
+  0%{
+    background:white;
+    color:black;
+        transform: translate(0);
+
+
+  }
+  25%{
+    background:#112;
+    transform: translateX(-10px);
+    color:white;
+  }
+  50%{
+    transform: translate(10px);
+
+  }
+  75%{
+    transform:translate(0px);
+  }
+  100%{
+transform:translate(0);
+
+  }
 }
 .main-stats {
   grid-column: 1 / 3;
@@ -296,6 +328,21 @@ body::before{
   color:rgba(90, 138, 19, 1);
   font-size:17px !important;
 }
+.Inputs{
+  width:160px;
+  height:30px;
+  border:none;
+  outline:none;
+  border-left:3px solid rgba(90, 138, 19, 1); 
+  border-radius:5px;
+  gap:10px;
+  color:black;
+  margin-right:20px;
+  margin-top:20px;
+  
+
+  text-align: center;
+}
 </style>
 </head>
 <body>
@@ -307,12 +354,12 @@ body::before{
   </div>
   <ul class="dash">
     <li onclick="location.href='leader.php'" class="nav-link"><img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ3vuKJJZ8RRfMjhAzDPeNInTMqVePhVgtVkw&s" alt="Icon"/>Dashboard</li>
-    <li class="nav-link"><img src="https://cdn-icons-png.flaticon.com/512/10751/10751558.png" alt="Icon"/>Home</li>
-    <li class="nav-link"><img src="https://static.vecteezy.com/system/resources/previews/053/489/040/non_2x/leaderboard-icon-simple-design-free-vector.jpg" alt="Icon"/>Leader Board</li>
-    <li class="nav-link"><img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTaQvqVUmMo2Q9pWacCNkCdRCfU1GAOBjbCMg&s" alt="Icon"/>Online</li>
-    <li class="nav-link"><img src="https://www.iconpacks.net/icons/1/free-settings-icon-960-thumb.png" alt="Icon"/>Settings</li>
-    <li class="nav-link"><img src="https://www.shutterstock.com/image-vector/vector-flat-illustration-grayscale-avatar-600nw-2264922221.jpg" alt="Icon"/>Profile</li>
-    <li onclick="location.href='logout.php'" class="nav-link"><img src="https://cdn-icons-png.flaticon.com/512/1828/1828427.png" alt="Icon"/>Logout</li>
+    <li onclick="window.location.href='message.php'" class="nav-link"><img src="https://cdn-icons-png.flaticon.com/512/10751/10751558.png" alt="Icon"/>Home</li>
+    <li onclick="window.location.href='message.php'" class="nav-link"><img src="https://static.vecteezy.com/system/resources/previews/053/489/040/non_2x/leaderboard-icon-simple-design-free-vector.jpg" alt="Icon"/>Leader Board</li>
+    <li onclick="window.location.href='message.php'" class="nav-link"><img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTaQvqVUmMo2Q9pWacCNkCdRCfU1GAOBjbCMg&s" alt="Icon"/>Online</li>
+    <li onclick="window.location.href='message.php'" class="nav-link"><img style="background:green" src="https://www.iconpacks.net/icons/1/free-settings-icon-960-thumb.png" alt="Icon"/>Settings</li>
+    <li onclick="window.location.href='message.php'" class="nav-link"><img src="https://www.shutterstock.com/image-vector/vector-flat-illustration-grayscale-avatar-600nw-2264922221.jpg" alt="Icon"/>Profile</li>
+    <li  style="color:#FFD700;" onclick="location.href='logout.php'" class="nav-link" ><img style="background:white;" src="https://cdn-icons-png.flaticon.com/512/1828/1828427.png" alt="Icon"/>Logout</li>
   </ul>
 </div>
 
@@ -364,12 +411,12 @@ body::before{
           <button type="submit" id="attend-button">Attend</button>
         </form>
       </div>
+        <h3 style="font-size:25px;">Management</h3>
 
-      <div class="action-group">
-        <h3>Management</h3>
-        <button><i class="fa-solid fa-user-plus"></i> Add Student</button>
-        <button><i class="fa-regular fa-trash-can"></i> Delete Student</button>
-        <button><i class="fa-solid fa-earth-europe"></i> Overall Report</button>
+      <div id="addStudents" class="action-group" style="display:flex;">
+        <button id="add" onclick="add()"><i class="fa-solid fa-user-plus"></i> Add Student</button>
+        <button id="delet"><i class="fa-regular fa-trash-can"></i> Delete Student</button>
+        <button id="over"><i class="fa-solid fa-earth-europe"></i> Overall Report</button>
       </div>
 
       <div class="action-group">
@@ -422,14 +469,102 @@ body::before{
   </div>
 </div>
 
+
+
+
 <script>
+
+  function add(){
+    let addStudents=document.getElementById("addStudents");
+    let studentName=document.createElement("input");
+    let levelType=document.createElement("input");
+    let classLevel=document.createElement("input");
+    let className=document.createElement("input");
+    let teacherId=document.createElement("input");
+    let send=document.createElement("button");
+    
+    studentName.placeholder="Enter the student name";
+
+    levelType.placeholder="Enter levely type";
+    classLevel.placeholder="Enter class level";
+    className.placeholder="Enter class name";
+    teacherId.placeholder="Enter teacher id";
+send.innerHTML = `Add student <i style="color:white; margin-right:10px;" class="fa-solid fa-arrow-right"></i>`;
+    send.style.color="rgb(44,242,24)";
+    send.style.textAlign="center";
+    send.style.width="130px";
+    send.style.border="none";
+    
+    send.style.height="30px";studentName.classList.add("Inputs");
+studentName.name = "student_name";
+
+levelType.classList.add("Inputs");
+levelType.name = "level_type";
+
+classLevel.classList.add("Inputs");
+classLevel.name = "class_level";
+
+className.classList.add("Inputs");
+className.name = "class_name";
+
+teacherId.classList.add("Inputs");
+teacherId.name = "teacher_id";
+
+    let addStudent=document.createElement("div");
+    addStudent.append(studentName,
+    levelType,
+    classLevel,
+        document.createElement("br"),
+
+    className,
+    teacherId,
+        send
+
+  );
+    const hideIt1=document.getElementById("add");
+    const hideIt2=document.getElementById("delet");
+    const hideIt3=document.getElementById("over");
+    addStudents.appendChild(addStudent);
+    addStudent.style.display="block";
+    hideIt1.style.display="none";
+    hideIt2.style.display="none";
+    hideIt3.style.display="none";
+
+  
+  send.addEventListener("click",function(ern){
+    addStudent.style.display="none";
+    hideIt1.style.display="block";
+    hideIt2.style.display="block";
+    hideIt3.style.display="block";
+
+  });
+/*fetch("save_student.php", {
+    method: "POST",
+    headers: {"Content-Type": "application/json"},
+    body: JSON.stringify(data)
+})
+.then(res => res.json())
+.then(resData => {
+    if (resData.success) {
+        alert("Student added successfully!");
+
+    } else {
+        alert("Error: " + resData.message);
+    }
+})
+.catch(err => console.error("Fetch error:", err));
+
+ 
+  }); */
+}
+
 function toggleMode() {
     const body = document.body;
     const button = document.getElementById("mode-toggle");
     body.classList.toggle("light-mode");
     button.textContent = body.classList.contains("light-mode") ? "Switch to Dark Mode" : "Switch to Light Mode";
 }
-
+  
 history.pushState(null, "", location.href);
 window.addEventListener("popstate", function () {
     history.pushState(null, "", location.href);
