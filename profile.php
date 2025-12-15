@@ -103,7 +103,7 @@
     </div>
     </div>
     <div style="display:block; margin-top:50px;">
-        <button class="bt1"><i style="margin-right:10px;" class="fa-solid fa-pencil"></i>Edit</button><br>
+        <button onclick="window.location.href='index.php'" class="bt1"><i style="margin-right:10px;" class="fa-solid fa-pencil"></i>Go back</button><br>
         <button class="bt">Change profile</button>
 
     </div>

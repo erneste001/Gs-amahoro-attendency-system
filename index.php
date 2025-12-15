@@ -343,7 +343,72 @@ transform:translate(0);
 
   text-align: center;
 }
+.flexi>span{
+  font-size: 18px;
+  
+}
+@media (max-width:767px){
+  .header-bar{
+    display:block;
+  }
+  .search-area{
+    width:250px;
+    height:40px;
+    display:flex;
+    align-items: center;
+    justify-content: center;
+    border-radius:10px;
+    background:#112;
+  }
 
+  
+  .resultss{
+  display:flex;
+  font-size:15px;
+  gap:30px;
+  justify-content: center;
+
+  }
+  .lost{
+    display:none;
+  }
+  .usernamess{
+    padding-top:5px;
+
+  }
+  .switch{
+    width:250px;
+    height:40px;
+    
+    
+  }
+  .main-stats{
+    gap:8px;
+  }
+  .main-stats>div{
+    
+   width:58px;
+   height:30px;
+   font-size:10px;
+   
+
+
+  }
+.flexi{
+  display:flex;
+}
+  .flexi>span{
+    font-size:10px;
+    gap:10px;
+    margin-right:5px;
+
+  }
+  .action-section-wrapper{
+    overflow-x: hidden;
+  }
+
+
+}
 </style>
 </head>
 <body>
@@ -367,27 +432,28 @@ transform:translate(0);
 <div class="content-area">
   <div class="header-bar">
     <input type="search" id="search" class="search-area" placeholder="Search students, levels, or posts...">
-    <div id="result" style="background:#334;" ></div>
-    <p><span style="font-size:23px; color:blue;">Welcome Back! </span>
-      <span id="usernames"><?php echo isset($_SESSION['email']) ? htmlspecialchars($_SESSION['email']) : "Erneste programmer"; ?></span>
+    
+    <p class="resultss"><span style="font-size:23px; color:blue;"><span class="lost">Welcome</span> Back! </span>
+      <span class="usernamess" id="usernames"><?php echo isset($_SESSION['email']) ? htmlspecialchars($_SESSION['email']) : "Erneste programmer"; ?></span>
     </p>
-    <button id="mode-toggle" onclick="toggleMode()">Switch to Light Mode</button>
+    <button class="switch" id="mode-toggle" onclick="toggleMode()">Switch to Light Mode</button>
   </div>
 
   <div class="main-stats">
     <div class="stat-card">
       <i class="fa-regular fa-star"></i>
-      <span>0</span>Total Students
+      <p class="flexi"><span>0</span><span>Total</span> <span class="losti">Students</span></p>
     </div>
     <div class="stat-card">
       <i class="fa-regular fa-hand"></i>
-      <span>0</span>Present Today
+      <p class="flexi"><span>0</span><span>Present</span><span> Today</span></p>
     </div>
     <div class="stat-card">
       <i class="fa-solid fa-user-minus"></i>
-      <span>0</span>Absent Today
+      <p class="flexi"><span>0</span><span>Absent</span><span> Today</span></p>
     </div>
   </div>
+  
 
   <div class="action-section-wrapper">
     <div class="action-section">
