@@ -343,22 +343,23 @@ transform:translate(0);
 
   text-align: center;
 }
+
 </style>
 </head>
 <body>
 
 <div class="sidebar">
   <div class="logo-area">
-    <img src="https://pbs.twimg.com/profile_images/1626166521683750912/qKyE0t72_400x400.jpg" alt="Logo"/>
-    <span class="tit">GS A²System</span>
+    <img class="logo" src="https://pbs.twimg.com/profile_images/1626166521683750912/qKyE0t72_400x400.jpg" alt="Logo"/>
+    <span class="tit">GSA²System</span>
   </div>
   <ul class="dash">
     <li onclick="location.href='leader.php'" class="nav-link"><img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ3vuKJJZ8RRfMjhAzDPeNInTMqVePhVgtVkw&s" alt="Icon"/>Dashboard</li>
-    <li onclick="window.location.href='message.php'" class="nav-link"><img src="https://cdn-icons-png.flaticon.com/512/10751/10751558.png" alt="Icon"/>Home</li>
+    <li onclick="window.location.href='index.php'" class="nav-link"><img src="https://cdn-icons-png.flaticon.com/512/10751/10751558.png" alt="Icon"/>Home</li>
     <li onclick="window.location.href='message.php'" class="nav-link"><img src="https://static.vecteezy.com/system/resources/previews/053/489/040/non_2x/leaderboard-icon-simple-design-free-vector.jpg" alt="Icon"/>Leader Board</li>
-    <li onclick="window.location.href='message.php'" class="nav-link"><img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTaQvqVUmMo2Q9pWacCNkCdRCfU1GAOBjbCMg&s" alt="Icon"/>Online</li>
-    <li onclick="window.location.href='message.php'" class="nav-link"><img style="background:green" src="https://www.iconpacks.net/icons/1/free-settings-icon-960-thumb.png" alt="Icon"/>Settings</li>
-    <li onclick="window.location.href='message.php'" class="nav-link"><img src="https://www.shutterstock.com/image-vector/vector-flat-illustration-grayscale-avatar-600nw-2264922221.jpg" alt="Icon"/>Profile</li>
+    <li onclick="alert(' other pages are not yet done wait for programmer to make it (Itangishaka Erneste)')" class="nav-link"><img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTaQvqVUmMo2Q9pWacCNkCdRCfU1GAOBjbCMg&s" alt="Icon"/>Online</li>
+    <li onclick="alert(' other pages are not yet done wait for programmer to make it (Itangishaka Erneste)')" class="nav-link"><img style="background:green" src="https://www.iconpacks.net/icons/1/free-settings-icon-960-thumb.png" alt="Icon"/>Settings</li>
+    <li onclick="window.location.href='profile.php'" class="nav-link"><img src="https://www.shutterstock.com/image-vector/vector-flat-illustration-grayscale-avatar-600nw-2264922221.jpg" alt="Icon"/>Profile</li>
     <li  style="color:#FFD700;" onclick="location.href='logout.php'" class="nav-link" ><img style="background:white;" src="https://cdn-icons-png.flaticon.com/512/1828/1828427.png" alt="Icon"/>Logout</li>
   </ul>
 </div>

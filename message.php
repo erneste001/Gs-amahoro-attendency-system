@@ -11,6 +11,8 @@
     <style>
         body{
             font-family:'calibri';
+            background:#112;
+            color:white !important;
         }
         .erneste{
             width:500px;
@@ -21,7 +23,7 @@
         margin-top:100px;
         list-style: none;
             height:450px;
-            box-shadow:2px 2px 3px 3px rgb(23,32,42);
+            box-shadow:1px 1px 1px 1px white;
             border-radius:10px;
         }
 .tit{
@@ -41,8 +43,12 @@
     color:white;
     text-align: center;
 }
+.btn:hover{
+    color:red;
+    transition:color 4s;
+}
 i{
-    color:#112;
+    color:white;
     font-size:17px !important;
 }
 li{
@@ -51,33 +57,48 @@ li{
 .erneste::before{
     content:"";
     position:absolute;
+
     width:100%;
     height:100%;
     opacity:50%;
     background:#112;
     top:0;
+
     left:0;
+    pointer-events: none;
 }
 .around{
     position:relative;
-        border:5px solid white;
+    width:150px;
+    height:150px;
 
     
 
 }
+
 .around::before{
         content:"";
+        border:5px solid blue;
     position:absolute;
-    width:100%;
-    height:100%;
+    width:200px;
+    height:200px;
     opacity:50%;
-    background:#112;
+    background:white;
     top:0;
     left:0;
     border:5px solid #112;
+    pointer-events: none;
 
 
 }
+.back{
+    width:100px;
+    height:30px;
+    border:none;
+    text-align: center;
+    background:rgba(141, 197, 22, 1);
+}
+
     </style>
 </head>
 <body>
@@ -90,7 +111,8 @@ li{
             <li style="color:#112; font-size:20px;">Contact me</li>
             <li><i style="margin-right:10px; font-size:25px;" class="fa-regular fa-envelope-open"></i>Email: Honorgenius001@gmail.com</li>
             <li><i style="margin-right:10px; font-size:25px;"   class="fa-solid fa-phone-volume"></i>Telphone:078432242</li>
-            <button class="btn">Get started</button>
+            <button class="btn">Get started</button><button class="back" onclick="window.location.href='index.php'">Back home</button>
+            
         </div>
 
     </div>
