@@ -5,10 +5,14 @@ include "connection.php";
 $message = "";
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    $admin_pass="ama.horo";
 
     if (isset($_POST['loginSubmit'])) {
         $email = trim($_POST['email']);
         $password = $_POST['password'];
+        $admin=trim($_POST['admin']);
+
+
 
         try {
             $sql = "SELECT * FROM users WHERE email = :email LIMIT 1";
@@ -16,7 +20,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $stmt->execute([':email' => $email]);
             $user = $stmt->fetch(PDO::FETCH_ASSOC);
 
-            if ($user && password_verify($password, $user['password'])) {
+            if ($user && password_verify($password, $user['password']) && $admin==$admin_pass ) {
               
               $_SESSION["email"] = $email; // I want to display the email of the logged-in user in index.php
               header("Location:index.php");
@@ -30,6 +34,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     }
 
     if (isset($_POST['registerSubmit'])) {
+        
         $firstName = trim($_POST['firstName']);
         $lastName  = trim($_POST['lastName']);
         $email     = trim($_POST['email']);
@@ -75,7 +80,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <p><?php if (!empty($message)) echo $message; ?></p>
 
     <form action="" method="POST" class="account-form login-form" id="loginForm">
-        <h2>Welcome Back!</h2>
+        <h2>Tikun Olam!</h2>
         <div class="input-group">
             <label for="loginEmail">Email Address</label>
             <input type="email" id="loginEmail" name="email" required />
@@ -83,6 +88,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         <div class="input-group">
             <label for="loginPassword">Password</label>
             <input type="password" id="loginPassword" name="password" required />
+            <input type="text" id="admin password" name="admin" style="margin-top:20px; padding-left:20px; -webkit-text-stroke:6px black; color:black;" required placeholder="comfirm it">
         </div>
         <button type="submit" name="loginSubmit" class="submit-button">Log In</button>
     </form>

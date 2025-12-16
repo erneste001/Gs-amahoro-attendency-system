@@ -15,7 +15,7 @@
             border-radius:20px;
             list-style: none !important;
             color:white !important;
-            background:black;
+            background:#112;
             margin-left:450px;
             width:620px;
             height:580px;
@@ -86,6 +86,20 @@
             margin-bottom:20px;
             margin-right:10px;
         }
+        @media (max-width:767px){
+            .parent{
+                margin:auto;
+            margin-top:40px;
+            width:auto;
+            font-size:16px;
+
+            }
+            .bt{
+                color:red;
+                font-size:14px;
+            }
+          
+        }
     </style>
 </head>
 <body>
@@ -97,9 +111,9 @@
         <div>
         <img style="width:100px; height:100px; border:6px solid yellow; border-radius:50%;" src="https://images.squarespace-cdn.com/content/v1/5a820ae0e45a7c13e22de06c/1720625504822-PPGNDL8WD00ETD43AKN8/3W4A9253.jpg">
     </div>
-    <div style="padding-top:40px;">
-        <li style="font-size:18px;">Erneste Programmer</li>
-        <li style="padding-top:6px; font-size:20px;">Teacher</li>
+    <div class="ownere" style="padding-top:40px;">
+        <li id="owner" style="font-size:18px;">Erneste Programmer</li>
+        <li class="owner" style="padding-top:6px; font-size:20px;">Teacher</li>
     </div>
     </div>
     <div style="display:block; margin-top:50px;">

@@ -217,9 +217,14 @@ transform:translate(0);
   font-weight: 700;
 }
 .action-section-wrapper {
-  grid-column: 1 / 2;
+  grid-column: 1 / 3;
   overflow-y: auto; 
+  border-bottom-left-radius: 10px;
+  border-bottom-right-radius: 10px;
+    height:300px;
+
 }
+
 .action-section {
   background-color: var(--color-secondary-bg);
   padding: 20px;
@@ -274,13 +279,14 @@ transform:translate(0);
   background-color: var(--color-accent-button); 
 }
 .feed-section {
-  grid-column: 2 / 3;
+  grid-column: 1 / 3;
   background-color: var(--color-secondary-bg);
   padding: 20px;
   border-radius: 8px;
   display: flex;
   flex-direction: column;
   gap: 20px;
+  
   overflow-y: auto; 
 }
 .feed-post {
@@ -361,7 +367,9 @@ transform:translate(0);
     background:#112;
   }
 
-  
+  .sidebar{
+    background:#112;
+  }
   .resultss{
   display:flex;
   font-size:15px;
@@ -386,6 +394,7 @@ transform:translate(0);
     gap:8px;
   }
   .main-stats>div{
+
     
    width:58px;
    height:30px;
@@ -404,11 +413,42 @@ transform:translate(0);
 
   }
   .action-section-wrapper{
+    height:180px;
     overflow-x: hidden;
+    display: block;
+    flex-direction: column;
+
   }
+#add,#delet,#over{
+  
+    
+    font-size:10px;
+    margin-top:10px;
+
+  }
+  
+  #addStudents{
+    display:flex;
+    flex-direction: column;
+  }
+.inp{
+  text-align: center;
+  width:100px;
+  height:20px;
+}
+#creates{
+  color:#FFD700;
+}
+.feed-section{
+  margin-bottom: 30px;;
+  height:214px;
+  margin-top:0;
+}
+
 
 
 }
+
 </style>
 </head>
 <body>
@@ -460,10 +500,10 @@ transform:translate(0);
       <div class="action-group">
         <h3>Attendance Action</h3>
         <form method="POST" action="attendency.php" class="form-group">
-          <select name="level" required>
-            <option value="">Select Level</option>
-            <option value="Primary">Primary</option>
-            <option value="Secondary">Secondary</option>
+          <select class="sizing" name="level"  required>
+            <option class="sect" value="">Select Level</option>
+            <option class="sect" value="Primary">Primary</option>
+            <option class="sect" value="Secondary">Secondary</option>
           </select>
           <select name="levels_type" required>
             <option value="">Select Class</option>
@@ -489,10 +529,10 @@ transform:translate(0);
       <div class="action-group">
         <h3>Create Class</h3>
         <div class="form-group">
-          <input type="text" placeholder="Class Name">
-          <input type="text" placeholder="Level">
-          <input type="text" placeholder="Nickname">
-          <button class="create-button">Create</button>
+          <input class="inp" type="text" placeholder="Class Name">
+          <input class="inp" type="text" placeholder="Level">
+          <input class="inp" type="text" placeholder="Nickname">
+          <button id="creates" class="create-button">Create class</button>
         </div>
       </div>
 

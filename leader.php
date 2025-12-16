@@ -140,11 +140,11 @@
         }
 
         .nav-btn, .btn-primary {
+
             padding: 8px 14px;
             border-radius: 5px;
             font-weight: 500;
             cursor: pointer;
-            border: 1px solid rgba(0, 0, 0, 0.15);
             font-size: 0.9rem;
             background: var(--color-light-bg);
             color: var(--color-dark-text);
@@ -285,7 +285,7 @@
 
         .circle-progress {
             fill: none;
-            stroke: var(--color-accent-blue);
+            stroke: #112;
             stroke-width: 8;
             stroke-dasharray: 251.2; 
             stroke-dashoffset: 251.2;
@@ -334,8 +334,114 @@
             color: var(--color-text-secondary);
             border-top: 1px solid rgba(0, 0, 0, 0.08);
         }
-   
+   @media (max-width:767px){
+  body{
+    overflow-x: hidden;
+  }
+  .stats-grid{
+    grid-template-rows: repeat(3, 1fr);
+    width:205px;
+    scrollbar-width: none;
+    display:flex;
+    height:110px;
+    overflow-y: auto;
+    flex-direction: column;
+  }
+  .section-title{
+   font-size:13px;
+   color:red;
+  }
+  .leaderboard-grid{
+    display:flex;
+    flex-direction: column;
+    overflow-y: auto;
     
+
+
+   
+  }
+  .sidebar{
+    width:100px;
+    font-size:9px;
+    background:#112;
+  }
+  #erne-small{
+    font-size:4px;
+    color:white;
+}
+  
+.level-card{
+    width:300px;
+    overflow-y: auto;
+    height:270px;
+    font-size:5px;
+    overflow-x: hidden;
+    scrollbar-width: none;
+                                                                                                                                                                                                                                    }
+.remove{
+    display:none;
+}
+.detail-item{
+    display:flex;
+    flex-direction: column;
+}
+    .leaderss{
+        width:auto;
+        height:200px;
+        overflow-y: auto;
+        scrollbar-width: none;
+    }
+    .dashboard-footer-text{
+        text-align: left;
+        padding-top: 30px;;
+        
+    }
+    .level-header{
+        font-size:15px;
+        text-align: center;
+    }
+ .col{
+    font-size:16px;
+    color:#111122;
+ }
+ .dashboard-header{
+    display:flex;
+    flex-direction: column;
+ }
+ .header-title{
+    font-size:10px;
+
+    
+ }
+
+  .erneste-block{
+
+    display:flex;
+
+    flex-direction:column;
+    background-color: red;
+  }
+ 
+  .dashboard-header{
+    display:block;
+
+  }
+  .time-navigation{
+    margin-top:20px;
+
+
+    display: block;
+  }
+#ernss{
+    width:200px;
+    height:30px;
+}
+
+   }
+.erneste-block{
+    display: flex; align-items: center;
+}
+
     </style>
 </head>
 <body>
@@ -346,9 +452,9 @@
             <div class="sidebar-logo" style="color: var(--color-accent-yellow);">ATTENDANCE SYSTEM</div>
             <ul class="sidebar-menu">
               <li><a href="#" class="active"><i class="fas fa-arrow-right"></i> Dashboard</a></li>
-<li><a href="#"><i class="fas fa-arrow-right"></i> Daily Log</a></li>
-<li><a href="#"><i class="fas fa-arrow-right"></i> Students</a></li>
-<li><a href="#"><i class="fas fa-arrow-right"></i> Settings</a></li>
+<li><a href="#"><i id="erne-small" class="fas fa-arrow-right"></i> Daily Log</a></li>
+<li><a href="#"><i id="erne-small"  class="fas fa-arrow-right"></i> Students</a></li>
+<li><a href="#"><i id="erne-small"  class="fas fa-arrow-right"></i> Settings</a></li>
 
             </ul>
         </div>
@@ -358,13 +464,14 @@
             <header class="dashboard-header">
                 <h1 class="header-title">Level Attendance Overview</h1>
                 
-                <div style="display: flex; align-items: center;">
+                <div class="ernest-block"  style="display: flex; align-items: center;">
                     <nav class="time-navigation">
-                        <button class="nav-btn active" style="border:none; background:#3498db; width:120px; color:white; height:40px;">Today</button>
-                        <button class="nav-btn" style="border:none";>Last Week</button>
-                        <button class="nav-btn" style="border:none">Month</button>
+                        <button id="ernss"  class="nav-btn">Today</button>
+                        <button id="ernss"   class="nav-btn" style="border:none";>Last Week</button>
+                        <button id="ernss"  class="nav-btn" style="border:none">Month</button>
+                       <button id="ernss"  type="button" style="background:#112; color:white;" class="nav-btn" onclick="location.href='index.php'">Back home <i class="fa-solid fa-arrow-right"></i></button> 
+
                     </nav>
-                    <button type="button" class="btn-primary" onclick="location.href='index.php'">Back home <i class="fa-solid fa-arrow-right"></i></button> 
                 </div>
             </header>
 
@@ -386,7 +493,7 @@
                 </section>
                 
                 <h2 class="section-title">Performance by Educational Level</h2>
-
+            <div class="leaderss">
                 <div class="leaderboard-grid">
                     
                     <section class="level-card">
@@ -402,21 +509,21 @@
 
                             <div class="detail-stats">
                                 <div class="detail-item">
-                                    <span class="detail-label">Total Students</span>
+                                    <span class="detail-label">Total <span class="remove">Students</span></span>
                                     <span class="detail-value">600</span>
                                 </div>
                                 <div class="detail-item">
-                                    <span class="detail-label">Present Today</span>
+                                    <span class="detail-label">Present <spa class="remove">Today</span></span>
                                     <span id="primaryPresentCount" class="detail-value" style="color: var(--color-accent-yellow);">0</span>
                                 </div>
                                 <div class="detail-item">
-                                    <span class="detail-label">Absent Today</span>
+                                    <span class="detail-label">Absent <spa class="remove">Today</span></span>
                                     <span id="primaryAbsentCount" class="detail-value" style="color: var(--color-accent-red);">0</span>
                                 </div>
                             </div>
                         </div>
                         <footer class="card-footer">
-                            <p>Action: Monitor morning check-in process.</p>
+                            <p><span class="remove">Action:</span> Monitor morning check-in process.</p>
                             <!--<button class="btn-small" style="background: var(--color-dark-text); color: white; border:none; padding: 6px 12px; border-radius: 4px;">View Details</button>-->
                         </footer>
                     </section>
@@ -434,21 +541,21 @@
 
                             <div class="detail-stats">
                                 <div class="detail-item">
-                                    <span class="detail-label">Total Students</span>
+                                    <span class="detail-label">Total <span class="remove">Students</span></span>
                                     <span class="detail-value">250</span>
                                 </div>
                                 <div class="detail-item">
-                                    <span class="detail-label">Present Today</span>
+                                    <span class="detail-label">Present <spa class="remove">Today</span></span>
                                     <span id="prePrimaryPresentCount" class="detail-value" style="color: var(--color-accent-yellow);">0</span>
                                 </div>
                                 <div class="detail-item">
-                                    <span class="detail-label">Absent Today</span>
+                                    <span class="detail-label">Absent <spa class="remove">Today</span></span>
                                     <span id="prePrimaryAbsentCount" class="detail-value" style="color: var(--color-accent-red);">0</span>
                                 </div>
                             </div>
                         </div>
                         <footer class="card-footer">
-                            <p>Action: High risk. Contact parents immediately.</p>
+                            <p><span class="remove">Action:</span> High risk. Contact parents immediately.</p>
                             <!--<button class="btn-small" style="background: var(--color-dark-text); color: white; border:none; padding: 6px 12px; border-radius: 4px;">View Details</button>-->
                         </footer>
                     </section>
@@ -466,28 +573,26 @@
 
                             <div class="detail-stats">
                                 <div class="detail-item">
-                                    <span class="detail-label">Total Students</span>
+                                    <span class="detail-label">Total <span class="remove">Students</span></span>
                                     <span class="detail-value">400</span>
                                 </div>
                                 <div class="detail-item">
-                                    <span class="detail-label">Present Today</span>
+                                    <span class="detail-label">Present <spa class="remove">Today</span></span>
                                     <span id="secondaryPresentCount" class="detail-value" style="color: var(--color-accent-yellow);">0</span>
                                 </div>
                                 <div class="detail-item">
-                                    <span class="detail-label">Absent Today</span>
+                                    <span class="detail-label">Absent <spa class="remove">Today</span></span>
                                     <span id="secondaryAbsentCount" class="detail-value" style="color: var(--color-accent-red);">0</span>
                                 </div>
                             </div>
                         </div>
-                        <footer class="card-footer">
-                            <p>Action: Excellent attendance. Maintain support.</p>
-                           <!-- <button class="btn-small" style="background: var(--color-dark-text); color: white; border:none; padding: 6px 12px; border-radius: 4px;">View Details</button>-->
-                        </footer>
+                   </div>
+                   
                     </section>
                 </div>
                 
                 <p class="dashboard-footer-text">
-                    This data is based on real-time attendance logging as of today.
+<span class="col">This data is based on real-time</span> <span class="remove">attendance logging as of today.</span>
                 </p>
             </main>
         </div>

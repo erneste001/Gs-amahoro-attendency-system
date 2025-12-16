@@ -98,7 +98,13 @@ li{
     text-align: center;
     background:rgba(141, 197, 22, 1);
 }
+@media (max-width:767px){
+    .erneste{
+        margin:auto;
+        margin-top:40px;
 
+    }
+}
     </style>
 </head>
 <body>
