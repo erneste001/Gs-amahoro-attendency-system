@@ -1,3 +1,14 @@
+<?php
+
+session_start();
+include "connection.php"; 
+// Redirect to login page if not logged in
+if (!isset($_SESSION['email'])) {
+    header("Location: login.php");
+    exit();
+}
+
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -334,13 +345,16 @@
             color: var(--color-text-secondary);
             border-top: 1px solid rgba(0, 0, 0, 0.08);
         }
-   @media (max-width:767px){
+   @media (max-width:1024px){
   body{
     overflow-x: hidden;
+    body{
+        width:100%;
+    }
   }
   .stats-grid{
     grid-template-rows: repeat(3, 1fr);
-    width:205px;
+    width:100%;
     scrollbar-width: none;
     display:flex;
     height:110px;

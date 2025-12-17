@@ -1,7 +1,13 @@
 <?php
 
 session_start();
-include "connection.php";
+include "connection.php"; 
+// Redirect to login page if not logged in
+if (!isset($_SESSION['email'])) {
+    header("Location: login.php");
+    exit();
+}
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -26,7 +32,7 @@ include "connection.php";
   --color-border: #CCC;
 }
 body {
-  background:black;
+  background:white;
   color: var(--color-text);
   font-family: 'Calibri', sans-serif;
   margin: 0;
@@ -34,18 +40,7 @@ body {
   overflow: hidden;
   position:relative;
 }
-body::before{
-   content:"";
-    position: absolute;
-    top:0;
-    left:0;
-    width:100%;
-    pointer-events: none;;
-    height:100%;
-    background:blue;
-    opacity:20%;
 
-}
 .action-section-wrapper::-webkit-scrollbar,
 .feed-section::-webkit-scrollbar {
   display: none;
@@ -297,7 +292,7 @@ transform:translate(0);
   border-bottom: none;
 }
 .feed-post img {
-  width: 100%;
+  width: 50%;
   height: auto;
   border-radius: 5px;
   margin-bottom: 10px;
@@ -332,7 +327,7 @@ transform:translate(0);
 }
 .tit{
   color:rgba(90, 138, 19, 1);
-  font-size:17px !important;
+  font-size:17px;
 }
 .Inputs{
   width:160px;
@@ -354,6 +349,16 @@ transform:translate(0);
   
 }
 @media (max-width:767px){
+  body{
+    width:100%;
+    background:black;
+  }
+  .dash{
+    display:flex;
+    flex-direction: column;
+    padding-left:15px;
+    
+  }
   .header-bar{
     display:block;
   }
@@ -366,9 +371,10 @@ transform:translate(0);
     border-radius:10px;
     background:#112;
   }
-
+  
   .sidebar{
-    background:#112;
+    background:rgba(27, 119, 129, 1);
+    width:20%;
   }
   .resultss{
   display:flex;
@@ -383,6 +389,9 @@ transform:translate(0);
   .usernamess{
     padding-top:5px;
 
+  }
+  .search-area{
+    margin-top:150px;
   }
   .switch{
     width:250px;
@@ -413,6 +422,7 @@ transform:translate(0);
 
   }
   .action-section-wrapper{
+    
     height:180px;
     overflow-x: hidden;
     display: block;
@@ -440,13 +450,43 @@ transform:translate(0);
   color:#FFD700;
 }
 .feed-section{
-  margin-bottom: 30px;;
-  height:214px;
+  margin-bottom: 80px;
+  height:200px;
   margin-top:0;
+}
+.tit{
+  color:white;
+  font-size:25px;
+}
+.feed-post img{
+width:100%;
+}
+.remove{
+  display:none;
+}
+.logo-area{
+gap:100px;  
+}
+.action-section-wrapper{
+  height:200px;
+}
+.content-area{
+  background:rgba(29, 130, 130, 1);
+  overflow-y: auto;
+  scrollbar-width: none;
+}
+.logo-area{
+  background:rgba(27, 119, 129, 1);
+  width:360px;
+  margin-top:20px;
+  padding-top:10px;
 }
 
 
-
+}
+.ring{
+  color:rgba(27, 119, 129, 1);
+  
 }
 
 </style>
@@ -455,17 +495,17 @@ transform:translate(0);
 
 <div class="sidebar">
   <div class="logo-area">
-    <img class="logo" src="https://pbs.twimg.com/profile_images/1626166521683750912/qKyE0t72_400x400.jpg" alt="Logo"/>
+    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQItuvHJNzQpfxkgWZf1zutYFwW-hKBX9UpbQ&s">
     <span class="tit">GSA²System</span>
   </div>
   <ul class="dash">
-    <li onclick="location.href='leader.php'" class="nav-link"><img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ3vuKJJZ8RRfMjhAzDPeNInTMqVePhVgtVkw&s" alt="Icon"/>Dashboard</li>
-    <li onclick="window.location.href='index.php'" class="nav-link"><img src="https://cdn-icons-png.flaticon.com/512/10751/10751558.png" alt="Icon"/>Home</li>
-    <li onclick="window.location.href='message.php'" class="nav-link"><img src="https://static.vecteezy.com/system/resources/previews/053/489/040/non_2x/leaderboard-icon-simple-design-free-vector.jpg" alt="Icon"/>Leader Board</li>
-    <li onclick="alert(' other pages are not yet done wait for programmer to make it (Itangishaka Erneste)')" class="nav-link"><img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTaQvqVUmMo2Q9pWacCNkCdRCfU1GAOBjbCMg&s" alt="Icon"/>Online</li>
-    <li onclick="alert(' other pages are not yet done wait for programmer to make it (Itangishaka Erneste)')" class="nav-link"><img style="background:green" src="https://www.iconpacks.net/icons/1/free-settings-icon-960-thumb.png" alt="Icon"/>Settings</li>
-    <li onclick="window.location.href='profile.php'" class="nav-link"><img src="https://www.shutterstock.com/image-vector/vector-flat-illustration-grayscale-avatar-600nw-2264922221.jpg" alt="Icon"/>Profile</li>
-    <li  style="color:#FFD700;" onclick="location.href='logout.php'" class="nav-link" ><img style="background:white;" src="https://cdn-icons-png.flaticon.com/512/1828/1828427.png" alt="Icon"/>Logout</li>
+    <li id="ring"   onclick="location.href='leader.php'" class="nav-link"><img class="be" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ3vuKJJZ8RRfMjhAzDPeNInTMqVePhVgtVkw&s" alt="Icon"/><span class="remove">Dashboard</span></li>
+    <li  id="ring"   onclick="window.location.href='index.php'" class="nav-link"><img src="https://cdn-icons-png.flaticon.com/512/10751/10751558.png" alt="Icon"/><span class="remove">Home</span></li>
+    <li  id="ring"   onclick="window.location.href='message.php'" class="nav-link"><img src="https://static.vecteezy.com/system/resources/previews/053/489/040/non_2x/leaderboard-icon-simple-design-free-vector.jpg" alt="Icon"/><span class="remove">Leader Board</span></li>
+    <li  id="ring" onclick="alert(' other pages are not yet done wait for programmer to make it (Itangishaka Erneste)')" class="nav-link"><img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTaQvqVUmMo2Q9pWacCNkCdRCfU1GAOBjbCMg&s" alt="Icon"/><span class="remove">Online</span></li>
+    <li  id="ring" onclick="alert(' other pages are not yet done wait for programmer to make it (Itangishaka Erneste)')" class="nav-link"><img style="background:green" src="https://www.iconpacks.net/icons/1/free-settings-icon-960-thumb.png" alt="Icon"/><span class="remove">Settings</span></li>
+    <li  id="ring" onclick="window.location.href='profile.php'" class="nav-link"><img src="https://www.shutterstock.com/image-vector/vector-flat-illustration-grayscale-avatar-600nw-2264922221.jpg" alt="Icon"/><span class="remove">Profile</span></li>
+    <li  style="color:#FFD700;" onclick="location.href='logout.php'" class="nav-link" ><img style="background:white;" src="https://cdn-icons-png.flaticon.com/512/1828/1828427.png" alt="Icon"/><span class="remove">Logout</span></li>
   </ul>
 </div>
 
@@ -474,7 +514,7 @@ transform:translate(0);
     <input type="search" id="search" class="search-area" placeholder="Search students, levels, or posts...">
     
     <p class="resultss"><span style="font-size:23px; color:blue;"><span class="lost">Welcome</span> Back! </span>
-      <span class="usernamess" id="usernames"><?php echo isset($_SESSION['email']) ? htmlspecialchars($_SESSION['email']) : "Erneste programmer"; ?></span>
+      <span style="color:rgba(29, 130, 130, 1);" class="usernamess" id="usernames"><?php echo isset($_SESSION['email']) ? htmlspecialchars($_SESSION['email']) : "Erneste programmer"; ?></span>
     </p>
     <button class="switch" id="mode-toggle" onclick="toggleMode()">Switch to Light Mode</button>
   </div>
@@ -562,9 +602,9 @@ transform:translate(0);
 
   <div class="feed-section">
     <h3>Updates & Feed</h3>
-    <?php for($i=1;$i<=4;$i++): ?>
+    <?php for($i=1;$i<=3;$i++): ?>
     <div class="feed-post">
-      <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSds80y3C6IPtHGw9uHTlKCrmCAZhaTlxloqg&s" alt="Post Image <?=$i?>">
+      <img src="programming.jpg" alt="Post Image <?=$i?>">
       <div class="form-group">
         <input type="text" placeholder="Comments..">
         <button class="comment-button">Send</button>
@@ -573,7 +613,9 @@ transform:translate(0);
       </div>
     </div>
     <?php endfor; ?>
+  
   </div>
+    
 </div>
 
 
@@ -588,6 +630,7 @@ transform:translate(0);
     let classLevel=document.createElement("input");
     let className=document.createElement("input");
     let teacherId=document.createElement("input");
+    let forms=document.createElement("form");
     let send=document.createElement("button");
     
     studentName.placeholder="Enter the student name";
@@ -618,16 +661,18 @@ teacherId.classList.add("Inputs");
 teacherId.name = "teacher_id";
 
     let addStudent=document.createElement("div");
-    addStudent.append(studentName,
+   
+
+  
+  forms.append(studentName,
     levelType,
     classLevel,
         document.createElement("br"),
 
     className,
     teacherId,
-        send
-
-  );
+        send);
+         addStudent.append(forms);
     const hideIt1=document.getElementById("add");
     const hideIt2=document.getElementById("delet");
     const hideIt3=document.getElementById("over");
